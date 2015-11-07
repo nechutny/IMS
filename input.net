@@ -1,0 +1,31 @@
+"ExpressPCB Netlist"
+"SwCAD III version 2.03r"
+1
+0
+0
+""
+""
+""
+
+"Part IDs Table"
+"LU1" "AND" ""
+"LU2" "OR" ""
+"LU3" "NAND" ""
+"LU4" "NOT" ""
+
+"Net names Table"
+"N0001"
+"N0002"
+"N0003"
+"N0004"
+
+"Net Connections Table"
+1 
+1
+2
+2
+3
+3
+3
+4
+4
