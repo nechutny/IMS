@@ -3,6 +3,8 @@
 #include <iostream>
 #include <cstring>
 #include <vector>
+#include "wire.h"
+#include "gate.h"
 
 void readHeader(FILE* fd)
 {
