@@ -91,7 +91,7 @@ void debug()
 		// Compute new outputs
 		for(unsigned i = 0; i < parts.size(); i++)
 		{
-			((GateAnd*)parts[i])->tick();
+			parts[i]->tick();
 		}
 
 		// Add them to wires
