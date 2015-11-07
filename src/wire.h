@@ -26,7 +26,7 @@ class Wire
 
 		Buffer buffer;
 
-		unsigned long long maxDelay;
+		unsigned long maxDelay;
 
 	public:
 		Wire();
@@ -44,7 +44,7 @@ class Wire
 		 * }
 		 */
 
-		void notifyDelay(unsigned long long delay);
+		void notifyDelay(unsigned long delay);
 		/* {
 		 * 	if(maxDelay < delay)
 		 * 	{
