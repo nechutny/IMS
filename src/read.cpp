@@ -64,11 +64,28 @@ void readHeader(FILE* fd)
 		}
 	}
 	
+	free(header);
+	
 }
 
 std::vector<Gate*> readParts(FILE* fd)
 {
 	std::vector<Gate*> result;
+	
+	char* header=(char*)malloc(100);
+	int a,i;
+	
+	if(fscanf(fd, "\n\"%[^\"]\"", header) != 1)
+	{
+		throw 2;
+	}
+	
+	if(strcmp(header, "Net Names Table"))
+	{
+		throw 2;
+	}
+	
+	
 
 	return result;
 }
