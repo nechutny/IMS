@@ -1,0 +1,18 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <iostream>
+
+std::vector readParts(FILE* fd)
+{
+	
+}
+
+std::vector readWires(FILE* fd)
+{
+	
+}
+
+void connectThem(std::vector* parts, std::vector* wires)
+{
+	
+}
