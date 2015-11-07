@@ -38,30 +38,10 @@ class Gate
 		void tick();
 
 		char getValue();
-		/* {
-		 *	return result;
-		 * }
-		 */
 
 		unsigned long getDelay();
-		/* {
-		 * 	return delay;
-		 * }
-		 */
 
 		void connectWire(unsigned int pin, Wire* in);
-		/* {
-		 *	if(pin == 0)
-		 *	{
-		 *		output = in;
-		 *		wire->notifyDelay(delay);
-		 *	}
-		 *	else
-		 *	{
-		 *		input[ pin ] = in;
-		 *	}
-		 * }
-		 */
 
 };
 

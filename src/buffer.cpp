@@ -27,7 +27,12 @@ void Buffer::setValue(char val)
 }
 
 
-void Buffer::increaseSize(unsigned long size)
+void Buffer::increaseSize(unsigned long num)
 {
-	// oh shit
+	if(num > size)
+	{
+		data = (char*)realloc(data, sizeof(char)*num);
+		size = num;
+	}
+
 }

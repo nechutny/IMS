@@ -28,20 +28,10 @@ class Buffer
 		~Buffer();
 
 		char getValue(int delay = 0);
-		/* {
-		 *
-		 * }
-		 */
 
 		void setValue(char val);
-		/* {
-		 *
-		 * }
-		 */
 
-		void increaseSize(unsigned long size);
-
-
+		void increaseSize(unsigned long num);
 };
 
 #endif
