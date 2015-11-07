@@ -1,6 +1,7 @@
 #include "buffer.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <cstring>
 
 
 Buffer::Buffer()
@@ -32,6 +33,7 @@ void Buffer::increaseSize(unsigned long num)
 	if(num > size)
 	{
 		data = (char*)realloc(data, sizeof(char)*num);
+		memset(data, 0, sizeof(char)*num);
 		size = num;
 	}
 

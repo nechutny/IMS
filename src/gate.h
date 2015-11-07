@@ -18,7 +18,7 @@ class Gate;
 
 class Gate
 {
-	private:
+	protected:
 		std::vector<Wire*> input;
 
 		Wire* output;

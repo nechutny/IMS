@@ -8,7 +8,6 @@ Gate::Gate()
 	output = NULL;
 	result = 0;
 	delay = 0;
-	input.begin();
 }
 
 Gate::~Gate()

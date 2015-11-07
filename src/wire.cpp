@@ -2,8 +2,7 @@
 
 Wire::Wire()
 {
-	input.begin();
-	output.begin();
+
 }
 
 Wire::~Wire()
