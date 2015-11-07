@@ -24,7 +24,8 @@ char Buffer::getValue(int delay)
 
 void Buffer::setValue(char val)
 {
-	data[ ++offset ] = val;
+	offset = (offset+1) % size;
+	data[ offset ] = val;
 }
 
 

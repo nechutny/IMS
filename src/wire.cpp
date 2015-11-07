@@ -12,12 +12,20 @@ Wire::~Wire()
 
 void Wire::tack()
 {
+	char res = 0;
+	for(unsigned i = 0; i < output.size(); i++)
+	{
+		res |= output[ i ]->getValue();
+	}
 
+	printf("Wire output: %d\n", res);
+
+	buffer.setValue(res);
 }
 
 char Wire::getValue(int delay)
 {
-	return 0;
+	return buffer.getValue(delay);
 }
 
 

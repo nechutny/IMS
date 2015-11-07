@@ -1,4 +1,4 @@
-CFLAGS=-O2  -lm -Wall -pedantic -g
+CFLAGS=-O2  -lm -Wall -pedantic -g -std=c++11
 OBJFILES=$(patsubst src/%.cpp, build/%.cpp.o, $(shell ls src/*.cpp))
 SHELL=bash
 

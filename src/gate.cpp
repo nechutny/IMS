@@ -7,7 +7,7 @@ Gate::Gate()
 {
 	output = NULL;
 	result = 0;
-	delay = 0;
+	delay = 15;
 }
 
 Gate::~Gate()
@@ -22,6 +22,7 @@ void Gate::tick()
 
 char Gate::getValue()
 {
+	printf("Gate output: %d\n", result);
 	return result;
 }
 

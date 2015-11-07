@@ -1,7 +1,12 @@
 #include "gate.h"
 
+#ifndef GATE_AND_H
+#define GATE_AND_H
+
 class GateAnd : public Gate
 {
 	public:
-		void tick();
+		virtual void tick() override;
 };
+
+#endif

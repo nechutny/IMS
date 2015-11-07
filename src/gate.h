@@ -35,7 +35,7 @@ class Gate
 		/**
 		 * Read from inputs and do calculation of result - saved into result
 		 */
-		void tick();
+		virtual void tick();
 
 		char getValue();
 

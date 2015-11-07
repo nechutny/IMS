@@ -1,9 +1,12 @@
 #include "gateAnd.h"
-
+#include <stdio.h>
 void GateAnd::tick()
 {
-	char result = 0;
-	for (unsigned i = 0; i < input.size(); i++) {
-		result &= input[ i ]->getValue(delay);
+	char res = 0;
+	for (unsigned i = 0; i < input.size(); i++)
+	{
+		res &= input[ i ]->getValue(delay);
 	}
+
+	result = res;
 }
