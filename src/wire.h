@@ -39,34 +39,12 @@ class Wire
 		void tack();
 
 		char getValue(int delay = 0);
-		/* {
-		 *
-		 * }
-		 */
 
 		void notifyDelay(unsigned long delay);
-		/* {
-		 * 	if(maxDelay < delay)
-		 * 	{
-		 * 		maxDelay = delay;
-		 * 		buffer->increaseSize(maxDelay);
-		 * 	}
-		 * }
-		 */
 
-		void connectWire(unsigned int pin, Wire* in);
-		/* {
-		 *	if(pin == 0)
-		 *	{
-		 *		output = in;
-		 *		wire->notifyDelay(delay);
-		 *	}
-		 *	else
-		 *	{
-		 *		input[ pin ] = in;
-		 *	}
-		 * }
-		 */
+		void addInput(Gate *in);
+
+		void addOutput(Gate *in);
 
 };
 
