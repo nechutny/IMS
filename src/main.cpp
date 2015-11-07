@@ -85,13 +85,16 @@ void debug()
 	parts[4]->connectWire(0, wires[2]);
 	parts[4]->connectWire(1, wires[1]);
 
+	// Simulate
 	while(1)
 	{
+		// Compute new outputs
 		for(unsigned i = 0; i < parts.size(); i++)
 		{
 			((GateAnd*)parts[i])->tick();
 		}
 
+		// Add them to wires
 		for(unsigned i = 0; i < wires.size(); i++)
 		{
 			wires[i]->tack();
