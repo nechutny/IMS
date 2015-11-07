@@ -73,19 +73,47 @@ std::vector<Gate*> readParts(FILE* fd)
 	std::vector<Gate*> result;
 	
 	char* header=(char*)malloc(100);
-	int a,i;
+	char* identificator=(char*)malloc(100);
+	char* label=(char*)malloc(100);
+	char pom;
+	//int a;
 	
 	if(fscanf(fd, "\n\"%[^\"]\"", header) != 1)
 	{
 		throw 2;
 	}
 	
-	if(strcmp(header, "Net Names Table"))
+	if(strcmp(header, "Part IDs Table"))
 	{
 		throw 2;
 	}
 	
+	while(1)
+	{
+		if(fgetc(fd) == EOF)
+		{
+			throw 2;
+		}
+		
+		pom = fgetc(fd);
+		
+		if(pom == '\n')
+		{
+			break;
+		}
+		
+		if( fscanf(fd, "%[^\"]\" \"%[^\"]\" \"\"",identificator, label) != 2)
+		{
+			printf("\n tady \n");
+			throw 2;
+		}
+		//printf("\n%s,   %s\n", identificator, label);
+	}
 	
+	
+	free(header);
+	free(label);
+	free(identificator);
 
 	return result;
 }
