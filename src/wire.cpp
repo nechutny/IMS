@@ -2,7 +2,7 @@
 
 Wire::Wire()
 {
-
+	maxDelay = 0;
 }
 
 Wire::~Wire()

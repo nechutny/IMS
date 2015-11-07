@@ -50,32 +50,40 @@ void debug()
 	// Cable 0
 	wireTmp = new Wire;
 	wires.insert(is, wireTmp);
-	wireTmp->addInput(parts[1]);
-	wireTmp->addOutput(parts[0]);
 
 	// Cable 1
 	wireTmp = new Wire;
 	is = wires.end();
 	wires.insert(is, wireTmp);
-	wireTmp->addInput(parts[4]);
-	wireTmp->addInput(parts[3]);
-	wireTmp->addOutput(parts[1]);
 
 	// Cable 2
 	wireTmp = new Wire;
 	is = wires.end();
 	wires.insert(is, wireTmp);
-	wireTmp->addInput(parts[0]);
-	wireTmp->addInput(parts[3]);
-	wireTmp->addOutput(parts[4]);
 
 	// Cable 3
 	wireTmp = new Wire;
 	is = wires.end();
 	wires.insert(is, wireTmp);
-	wireTmp->addInput(parts[0]);
-	wireTmp->addInput(parts[1]);
-	wireTmp->addOutput(parts[3]);
+
+	// Connect 0 AND
+	parts[0]->connectWire(0, wires[0]);
+	parts[0]->connectWire(1, wires[2]);
+	parts[0]->connectWire(2, wires[3]);
+
+	// Connect 1 AND
+	parts[1]->connectWire(0, wires[1]);
+	parts[1]->connectWire(1, wires[0]);
+	parts[1]->connectWire(2, wires[3]);
+
+	// Connect 3 OR
+	parts[3]->connectWire(0, wires[3]);
+	parts[3]->connectWire(1, wires[2]);
+	parts[3]->connectWire(2, wires[1]);
+
+	// Connect 4 NOT
+	parts[4]->connectWire(0, wires[2]);
+	parts[4]->connectWire(1, wires[1]);
 
 	while(1)
 	{

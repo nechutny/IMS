@@ -42,7 +42,8 @@ void Gate::connectWire(unsigned int pin, Wire* in)
 	}
 	else
 	{
-		input[ pin ] = in;
+		std::vector<Wire*>::iterator it = input.end();
+		input.insert(it, in);
 		in->addInput(this);
 	}
 }
