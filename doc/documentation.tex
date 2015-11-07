@@ -4,20 +4,38 @@
 \usepackage[T1]{fontenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{url}
 \usepackage{amssymb}
 \usepackage[left=2cm,right=2cm,top=2.5cm,bottom=2cm]{geometry}
 \author{Stanislav Nechutný}
 \begin{document}
 
 	\section{Zdroje}
-	
+
 		\subsection{Netlist}
-			http://www.expresspcb.com/ExpressPCBBin/NetlistFileFormat.pdf
-			https://en.wikipedia.org/wiki/Netlist
+
+
+			\url{http://www.expresspcb.com/ExpressPCBBin/NetlistFileFormat.pdf} \\
+			\url{https://en.wikipedia.org/wiki/Netlist}
 
 	\section{Dotazy}
-		Formát netlistu
-		
+
+		\subsection{Formát netlistu}
+
+			Varinty
+
+				a) \url{http://www.expresspcb.com/ExpressPCBBin/NetlistFileFormat.pdf}
+
+				b) \url{http://cadlab.cs.ucla.edu/~trio/gdif.html}
+
+		\subsection{Inicializace logických obvodů}
+
+			Jak začínat na začátku simulace?
+
+				a) Veškeré komponenty mají na začátku výstup 0 - vychází z předpokladu, že je vypnutý i vstupní proud do logických obvodů a tak z NOT nemůže jít logická 1.
+
+				b) Před začátkem simulace mají již logické obvody zapnuté napájení a tak z INPUT $\rightarrow$ NOT $\rightarrow$ OUTPUT půjde již na začátku logická 1
+
 
 
 \end{document}
