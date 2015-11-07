@@ -25,7 +25,7 @@ class Gate
 
 		char result;
 
-		unsigned long long delay;
+		unsigned long delay;
 
 	public:
 		Gate();
@@ -43,7 +43,7 @@ class Gate
 		 * }
 		 */
 
-		unsigned long long getDelay();
+		unsigned long getDelay();
 		/* {
 		 * 	return delay;
 		 * }

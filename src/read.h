@@ -4,6 +4,9 @@
 #include <cstring>
 #include <vector>
 
+#include "gate.h"
+#include "wire.h"
+
 #ifndef READ_H
 #define READ_H
 

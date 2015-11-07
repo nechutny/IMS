@@ -17,30 +17,30 @@ class Buffer;
 
 class Buffer
 {
-private:
-	char* data;
-	unsigned long long offset;
-	unsigned long long size;
+	private:
+		char* data;
+		unsigned long offset;
+		unsigned long size;
 
-public:
-	Buffer();
+	public:
+		Buffer();
 
-	~Buffer();
+		~Buffer();
 
-	char getValue(int delay = 0);
-	/* {
-	 *
-	 * }
-	 */
+		char getValue(int delay = 0);
+		/* {
+		 *
+		 * }
+		 */
 
-	void setValue(char val);
-	/* {
-	 *
-	 * }
-	 */
+		void setValue(char val);
+		/* {
+		 *
+		 * }
+		 */
 
-	void increaseSize(unsigned long long size);
-	
+		void increaseSize(unsigned long size);
+
 
 };
 
