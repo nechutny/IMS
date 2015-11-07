@@ -13,19 +13,14 @@
 "LU3" "NAND" ""
 "LU4" "NOT" ""
 
-"Net names Table"
-"N0001"
-"N0002"
-"N0003"
-"N0004"
+"Net Names Table"
+"N0001" 1
+"N0002" 2
+"N0003" 3
+"N0004" 4
 
 "Net Connections Table"
-1 
-1
-2
-2
-3
-3
-3
-4
-4
+1 1 0 2
+1 2 1 0
+2 3 0 4
+2 4 1 0
