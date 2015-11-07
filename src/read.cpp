@@ -64,21 +64,21 @@ void readHeader(FILE* fd)
 	
 }
 
-std::vector<char> readParts(FILE* fd)
+std::vector<Gate*> readParts(FILE* fd)
 {
-	std::vector<char> result;
+	std::vector<Gate*> result;
 
 	return result;
 }
 
-std::vector<char> readWires(FILE* fd)
+std::vector<Wire*> readWires(FILE* fd)
 {
-	std::vector<char> result;
+	std::vector<Wire*> result;
 
 	return result;
 }
 
-void connectThem(std::vector<char>* parts, std::vector<char>* wires)
+void connectThem(std::vector<Gate*>* parts, std::vector<Wire*>* wires)
 {
 	
 }
