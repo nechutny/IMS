@@ -116,4 +116,5 @@ int main(int argc, char* argv[])
 		readHeader(fd);
 		std::vector<Gate*> parts = readParts(fd);
 		std::vector<Wire*> wires = readWires(fd);
+		connectThem(fd, &parts, &wires);
 }
