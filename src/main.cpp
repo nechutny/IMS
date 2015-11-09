@@ -15,32 +15,32 @@ void debug()
 {
 	Gate *gateTmp;
 
-	std::vector<Gate*> parts;
-	std::vector<Gate*>::iterator it = parts.end();
+	std::vector<Gate*> gates;
+	std::vector<Gate*>::iterator it = gates.end();
 
 	// 0 - AND
 	gateTmp = (Gate*)new GateAnd;
-	parts.insert(it, gateTmp);
+	gates.insert(it, gateTmp);
 
 	// 1 - AND
-	it = parts.end();
+	it = gates.end();
 	gateTmp = (Gate*)new GateAnd;
-	parts.insert(it, gateTmp);
+	gates.insert(it, gateTmp);
 
 	// 2 - AND
-	it = parts.end();
+	it = gates.end();
 	gateTmp = (Gate*)new GateAnd;
-	parts.insert(it, gateTmp);
+	gates.insert(it, gateTmp);
 
 	// 3 - OR
-	it = parts.end();
+	it = gates.end();
 	gateTmp = (Gate*)new GateOr;
-	parts.insert(it, gateTmp);
+	gates.insert(it, gateTmp);
 
 	// 4 - NOT
-	it = parts.end();
+	it = gates.end();
 	gateTmp = (Gate*)new GateNot;
-	parts.insert(it, gateTmp);
+	gates.insert(it, gateTmp);
 
 
 	std::vector<Wire*> wires;
@@ -67,31 +67,31 @@ void debug()
 	wires.insert(is, wireTmp);
 
 	// Connect 0 AND
-	parts[0]->connectWire(0, wires[0]);
-	parts[0]->connectWire(1, wires[2]);
-	parts[0]->connectWire(2, wires[3]);
+	gates[0]->connectWire(0, wires[0]);
+	gates[0]->connectWire(1, wires[2]);
+	gates[0]->connectWire(2, wires[3]);
 
 	// Connect 1 AND
-	parts[1]->connectWire(0, wires[1]);
-	parts[1]->connectWire(1, wires[0]);
-	parts[1]->connectWire(2, wires[3]);
+	gates[1]->connectWire(0, wires[1]);
+	gates[1]->connectWire(1, wires[0]);
+	gates[1]->connectWire(2, wires[3]);
 
 	// Connect 3 OR
-	parts[3]->connectWire(0, wires[3]);
-	parts[3]->connectWire(1, wires[2]);
-	parts[3]->connectWire(2, wires[1]);
+	gates[3]->connectWire(0, wires[3]);
+	gates[3]->connectWire(1, wires[2]);
+	gates[3]->connectWire(2, wires[1]);
 
 	// Connect 4 NOT
-	parts[4]->connectWire(0, wires[2]);
-	parts[4]->connectWire(1, wires[1]);
+	gates[4]->connectWire(0, wires[2]);
+	gates[4]->connectWire(1, wires[1]);
 
 	// Simulate
 	while(1)
 	{
 		// Compute new outputs
-		for(unsigned i = 0; i < parts.size(); i++)
+		for(unsigned i = 0; i < gates.size(); i++)
 		{
-			parts[i]->tick();
+			gates[i]->tick();
 		}
 
 		// Add them to wires
@@ -111,10 +111,25 @@ int main(int argc, char* argv[])
 		return 0;
 	}
 
-		FILE* fd = fopen("input.net", "r");
+	FILE* fd = fopen("input.net", "r");
 		
-		readHeader(fd);
-		std::vector<Gate*> parts = readParts(fd);
-		std::vector<Wire*> wires = readWires(fd);
-		connectThem(fd, &parts, &wires);
+	readHeader(fd);
+	std::vector<Gate*> gates = readParts(fd);
+	std::vector<Wire*> wires = readWires(fd);
+	connectThem(fd, &gates, &wires);
+
+	while(1)
+	{
+		// Compute new outputs
+		for(unsigned i = 0; i < gates.size(); i++)
+		{
+			gates[i]->tick();
+		}
+
+		// Add them to wires
+		for(unsigned i = 0; i < wires.size(); i++)
+		{
+			wires[i]->tack();
+		}
+	}
 }
