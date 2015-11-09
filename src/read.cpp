@@ -194,6 +194,9 @@ std::vector<Wire*> readWires(FILE* fd)
 	char* identificator=(char*)malloc(100);
 	char pom;
 	int a;
+
+	std::vector<Wire*>::iterator is = result.end();
+	Wire *wireTmp;
 	
 	if(fscanf(fd, "\n\"%[^\"]\"", header) != 1)
 	{
@@ -224,6 +227,10 @@ std::vector<Wire*> readWires(FILE* fd)
 			throw 2;
 		}
 		//printf("\n%s,   %d\n", identificator, a);
+		
+		wireTmp = new Wire;
+		is = result.end();
+		result.insert(is, wireTmp);
 	}	
 
 	return result;
@@ -231,6 +238,7 @@ std::vector<Wire*> readWires(FILE* fd)
 
 void connectThem(FILE* fd, std::vector<Gate*>* parts, std::vector<Wire*>* wires)
 {
+	int wiresL, partL, pin, conectionsL;
 	char* header=(char*)malloc(100);
 	if(fscanf(fd, "\n\"%[^\"]\"", header) != 1)
 	{
@@ -242,5 +250,12 @@ void connectThem(FILE* fd, std::vector<Gate*>* parts, std::vector<Wire*>* wires)
 		throw 2;
 	}
 	
+	while(fscanf(fd,"%d %d %d %d", &wiresL, &partL, &pin, &conectionsL) == 4)
+	{
+		//*(parts[partL]).connectWire(pin, wires[wiresL]);
+		//proc to nefunguje?
+	}
+	
+	free(header);
 	//nacis prvni tri cisla, propojit, hotovo :)
 }
