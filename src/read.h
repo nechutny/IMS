@@ -14,7 +14,15 @@
 #ifndef READ_H
 #define READ_H
 
-enum gateType;
+
+typedef enum
+{
+	AND,
+	OR,
+	NAND,
+	XOR,
+	NOT
+} gateType;
 
 gateType hashGate(char* type);
 

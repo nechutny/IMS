@@ -3,6 +3,9 @@
 #include <iostream>
 #include <cstring>
 #include <vector>
+
+#include "read.h"
+
 #include "wire.h"
 #include "gate.h"
 
@@ -10,14 +13,6 @@
 #include "gateOr.h"
 #include "gateNot.h"
 
-enum gateType
-{
-	AND,
-	OR,
-	NAND,
-	XOR,
-	NOT
-};
 
 gateType hashGate(char* type)
 {
@@ -252,7 +247,8 @@ void connectThem(FILE* fd, std::vector<Gate*>* parts, std::vector<Wire*>* wires)
 	
 	while(fscanf(fd,"%d %d %d %d", &wiresL, &partL, &pin, &conectionsL) == 4)
 	{
-		//*(parts[partL]).connectWire(pin, wires[wiresL]);
+		printf("%d %d\n", partL, wiresL);
+		((*parts)[partL-1])->connectWire(pin, (*wires)[wiresL-1]);
 		//proc to nefunguje?
 	}
 	
