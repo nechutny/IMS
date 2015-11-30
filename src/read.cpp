@@ -267,11 +267,9 @@ void connectThem(FILE* fd, std::vector<Gate*>* parts, std::vector<Wire*>* wires)
 	
 	while(fscanf(fd,"%d %d %d %d", &wiresL, &partL, &pin, &conectionsL) == 4)
 	{
-		printf("%d %d\n", partL, wiresL);
+		printf("%d %d %d\n", wiresL, partL, pin);
 		((*parts)[partL-1])->connectWire(pin, (*wires)[wiresL-1]);
-		//proc to nefunguje?
 	}
 	
 	free(header);
-	//nacis prvni tri cisla, propojit, hotovo :)
 }
