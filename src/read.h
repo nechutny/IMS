@@ -21,7 +21,8 @@ typedef enum
 	OR,
 	NAND,
 	XOR,
-	NOT
+	NOT,
+	INPUT
 } gateType;
 
 gateType hashGate(char* type);

@@ -12,6 +12,9 @@
 #include "gateAnd.h"
 #include "gateOr.h"
 #include "gateNot.h"
+#include "gateNand.h"
+#include "gateXor.h"
+#include "gateInput.h"
 
 
 gateType hashGate(char* type)
@@ -39,6 +42,11 @@ gateType hashGate(char* type)
 	if(strcmp(type, "NOT") == 0)
 	{
 		return NOT;
+	}
+	
+	if(strcmp(type, "INPUT") == 0)
+	{
+		return INPUT;
 	}
 	
 	throw 2;
@@ -159,15 +167,18 @@ std::vector<Gate*> readParts(FILE* fd)
 			break;
 				
 			case NAND:
-				//gateTmp = (Gate*)new GateNand;
+				gateTmp = (Gate*)new GateNand;
 			break;
 				
 			case XOR:
-				//gateTmp = (Gate*)new GateXor;
+				gateTmp = (Gate*)new GateXor;
 			break;
 				
 			case NOT:
 				gateTmp = (Gate*)new GateNot;	
+				
+			case INPUT:
+				gateTmp = (Gate*)new GateInput;	
 			break;			
 		}
 		result.insert(it, gateTmp);
