@@ -9,6 +9,6 @@ GateInput::GateInput(FILE* outFile)
 {
 	output = NULL;
 	this->outFile = outFile;
-	result = 0;
+	result = 1;
 	delay = 0;
 }

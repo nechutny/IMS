@@ -15,6 +15,6 @@ GateNot::GateNot(FILE* outFile)
 {
 	output = NULL;
 	this->outFile = outFile;
-	result = 0;
+	result = 1;
 	delay = DELAY_NOT;
 }
