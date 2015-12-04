@@ -18,7 +18,7 @@ void Wire::tack()
 		res |= output[ i ]->getValue();
 	}
 
-	printf("Wire output: %d\n", res);
+	//printf("Wire output: %d\n", res);
 
 	buffer.setValue(res);
 }

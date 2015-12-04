@@ -118,6 +118,8 @@ int main(int argc, char* argv[])
 	std::vector<Wire*> wires = readWires(fd);
 	connectThem(fd, &gates, &wires);
 
+	unsigned long long time = 0;
+
 	while(1)
 	{
 		// Compute new outputs
@@ -131,5 +133,9 @@ int main(int argc, char* argv[])
 		{
 			wires[i]->tack();
 		}
+
+		printf("\n, %lld",time);
+
+		time++;
 	}
 }

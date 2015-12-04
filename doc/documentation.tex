@@ -10,36 +10,127 @@
 \author{Stanislav Nechutný}
 \begin{document}
 
-	\section{Zdroje}
+	\newcommand{\slideRef}[1]{\textit{(IMS slide #1)}}
 
+	\begin{titlepage}
+
+		\begin{center}
+
+			\textsc{
+				\Huge
+					Vysoké učení technické v~Brně\\
+				\huge
+					Fakulta informačních technologií
+			}\\
+
+			\vspace{\stretch{0.320}}
+
+			\LARGE
+					IMS - Modelování a simulace\\
+					3. Simulátor číslicových obvodů\\~\\
+			\Huge{}
+					Dokumentace
+			\vspace{\stretch{0.650}}
+
+		\end{center}
+
+		{\Large
+			30. listopadu 2015
+			\hfill
+			Stanislav Nechutný, Miloslav Smutka
+		}
+
+	\end{titlepage}
+
+
+	\section{Úvod a motivaci}
+		Tato práce se zaměřuje na tvorbu simulátoru logických obvodů, který implementuje hradla AND, OR, XOR, NOT, NOR, NAND. Pro implementaci je zvolen jazyk C++ a jako vstup jednoduchý textový soubor, jehož formát je odvozen od NETLISTu. Blíže je vstupní formát popsán v této dokumentaci v kapitole \ref{netlist}.
+		
+		
+			
+		\subsection{Konzultace a zdroje}
+			Chování logických členů v našem modelu systému \slideRef{18} bylo konzultováno s panem Bc. Stanislavem Koskem, který je absolventem bakalářského studia na Fakultě elektronické a komunikačních technologií Vysokého učení technického v Brně a ve volném čase se zabývá návrhem logických obvodů. Jednalo se zejména o zjištění typických zpoždění hradel pro zajištění vhodné implementace systému a dalších specifických vlastností hradel, které je třeba v simulaci zohlednit.
+			
+		\subsection{Ověřování validity modelu}
+			Pro ověření validity modelu \slideRef{37} byla použita stavebnice Voltík III a Voltík II, které obsahují většinu, v tomto modelu implementovaných, logických hradel a je tedy možné sledovat průběh zapojení. Pro vizualizaci dat bylo využito připojení led diod a pro vizualizaci zpoždění zaznamenatelném lidským okem byli využity kondenzátory s různou kapacitou.
+			
+			Připojením výstupu logických hradel na osciloskop bylo sledováno odpovídající chování, jako u simulovaných a dochází tedy k ekvivalentnímu chování systémů \slideRef{26}.
+		
+		
+
+	\section{Shrnutí relevantních faktů, zdroje informací}
+		...	
+		
+		\subsection{Použité postupy}
+			Proč jsou vhodné
+			
+			Krok byl zvolen 1 nanosekunda, aby nedošlo k problémům s detekcí změn stavových podmínek \slideRef{269}. Jak již víme například z předmětu Informační systémy, tak vzorkovací frekvence by měla být alespoň dvojnásobná pro vhodné vzorkování na diskrétní hodnoty.
+			
+			Použitým modelem signálů je dvouhodnotový \slideRef{277}, který je výrazně rychlý. 
+			
+			Bylo zvoleno přiřaditelné zpoždění \slideRef{278} pro každý typ logického hradla. Tato varianta vychází ze zadání, ale je i zcela logickým požadavkem, které vychází z rozdílné vnitřní implementace hradel. Jsou uvnitř použité různé přechody v různém množství a tak samozřejmě dochází k odlišnostem ve zpoždění. Na tento fakt jsme byli také upozornění při konzultaci s Bc. Stanislavem Koskem.
+			
+			Pro řešení zpětné vazby obvodů bylo zvoleno iterační řešení. Inicializace modelu \slideRef{279} vychází ze stavu, kdy v čase T=0 je sepnut nejen vstup, ale i napájení logických členů, takže k nastavení jejich výstupů dochází v počáteční iteraci. Logické hradlo NOT tedy v čase T=0 bude mít již na výstupu logickou 1, ale pokud má na vstup připojenu logickou 1, tak na výstupu se logická 0 objeví až v čase T=SpožděníHradla. Obdobné to bude u dalších negovaných hradel, jako například NAND apod.
+		
+
+			
+		\subsection{Původ postupů}
+			Popsat, že jsme udělali v pátek brainstorming, popsali 2x dveře a v sobotu to podle toho implementovali.
+			
+			Na základě návrhu a informací v prezentaci \slideRef{276} byla zvolena implementace diskrétního modelu.
+	
+	\section{Koncepce metody, přístupu, modelu}
+
+		Uzavřený systém \slideRef{30}
+		
+		Izomorfní systém \slideRef{27}
+	
+		...	
+		
+		Model je deterministický \slideRef{32}, jelikož simuluje logické obvody, které mají deterministické chování a nejsou zde náhodné proměnné \slideRef{75}.
+		
+		Veškeré komponenty mají na začátku výstup 0 - vychází z předpokladu, že je vypnutý i vstupní proud do logických obvodů a tak z NOT nemůže jít logická 1.
+	
+	\section{Implementace metody, modelu}
+		...
+		
+		Pro implementaci byl zvolen kvaziparalelismus \slideRef{121} pro jeho jednoduchost pro implementaci a omezení počtu chyb vzniklých případnou synchronizací paralelních procesů. Paralelismus by byl obtížně implementovatelný, jelikož chování jednoho členu systému závisí na předchozích výstupech ostatních.
+		
+		Na základě analýzy zadání a chování logických prvků bylo rozhodnuto, že bude využito konceptu objektově orientovaného programování \slideRef{168}, které nabízí jazyk C++. Každé simulované hradlo bude instancí třídy implementující konkrétní chování. Společné chování je implementováno v abstraktní třídě od které jednotlivá hradla dědí. Dalším typem objektu je vodič, který slouží k propojení vstupů a výstupů s hradly. Opět bude \textit{n} instancí v závislosti na vstupním souboru.
+		
+		Na základě zjištěných informací bylo rozhodnuto použít kruhových bufferů
+		
+		...
+		
+		Argumentem programu je množství požadovaného modelového času \slideRef{21}, který má být simulován. Jelikož je model implementován v prostředí číslicových systémů, tak je čas diskrétní \slideRef{22}.
+		
+		...		
+		
+		
 		\subsection{Netlist}
-
+			\label{netlist}
 
 			\url{http://www.expresspcb.com/ExpressPCBBin/NetlistFileFormat.pdf} \\
 			\url{https://en.wikipedia.org/wiki/Netlist}
+	\section{Experimentování}
+		...
+		
+	\section{Závěr}
+		...
 
-	\section{Dotazy}
 
-		\subsection{Formát netlistu}
 
-			Varinty
 
-				a) \url{http://www.expresspcb.com/ExpressPCBBin/NetlistFileFormat.pdf}
+	\section{Zdroje}
 
-				b) \url{http://cadlab.cs.ucla.edu/~trio/gdif.html}
-
-		\subsection{Inicializace logických obvodů}
-
-			Jak začínat na začátku simulace?
-
-				a) Veškeré komponenty mají na začátku výstup 0 - vychází z předpokladu, že je vypnutý i vstupní proud do logických obvodů a tak z NOT nemůže jít logická 1.
-
-				b) Před začátkem simulace mají již logické obvody zapnuté napájení a tak z INPUT $\rightarrow$ NOT $\rightarrow$ OUTPUT půjde již na začátku logická 1
+		
 
 	\section{Chyby}
 
 		Cislo chyby	popis
+		
 		2		Spatny format netlistu
+		
 		3		Netlis obsahuje chyby
 
 
