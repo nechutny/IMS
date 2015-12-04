@@ -6,13 +6,20 @@
 Gate::Gate()
 {
 	output = NULL;
+	this->outFile = NULL;
 	result = 0;
-	delay = 15;
+	delay = 0;
 }
 
 Gate::~Gate()
 {
 
+}
+
+void Gate::setResult(char result)
+{
+	fprintf(outFile, ", %d", result ? 1 : 0);
+	this->result = result;
 }
 
 void Gate::tick()

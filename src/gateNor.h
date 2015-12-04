@@ -6,7 +6,9 @@
 class GateNor : public Gate
 {
 	public:
-	virtual void tick() override;
+		GateNor(FILE* outFile);
+
+		virtual void tick() override;
 };
 
 #endif

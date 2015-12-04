@@ -30,7 +30,7 @@ gateType hashGate(char* type);
 
 void readHeader(FILE* fd);
 
-std::vector<Gate*> readParts(FILE* fd);
+std::vector<Gate*> readParts(FILE* fd, FILE* output);
 
 std::vector<Wire*> readWires(FILE* fd);
 

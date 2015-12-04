@@ -8,5 +8,13 @@ void GateOr::tick()
 		res |= input[ i ]->getValue(delay);
 	}
 
-	result = res;
+	setResult(res);
+}
+
+GateOr::GateOr(FILE* outFile)
+{
+	output = NULL;
+	this->outFile = outFile;
+	result = 0;
+	delay = DELAY_OR;
 }

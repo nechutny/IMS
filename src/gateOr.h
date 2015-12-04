@@ -6,7 +6,9 @@
 class GateOr : public Gate
 {
 	public:
-	virtual void tick() override;
+		GateOr(FILE* outFile);
+
+		virtual void tick() override;
 };
 
 #endif

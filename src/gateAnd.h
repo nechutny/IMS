@@ -6,7 +6,11 @@
 class GateAnd : public Gate
 {
 	public:
+		GateAnd(FILE* outFile);
+
 		virtual void tick() override;
+
+
 };
 
 #endif

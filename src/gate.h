@@ -14,6 +14,8 @@ class Gate;
 #include <iostream>
 #include <vector>
 
+#include "delays.h"
+
 #include "wire.h"
 
 class Gate
@@ -22,6 +24,8 @@ class Gate
 		std::vector<Wire*> input;
 
 		Wire* output;
+
+		FILE* outFile;
 
 		char result;
 
@@ -36,6 +40,8 @@ class Gate
 		 * Read from inputs and do calculation of result - saved into result
 		 */
 		virtual void tick();
+
+		void setResult(char result);
 
 		char getValue();
 

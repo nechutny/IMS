@@ -8,5 +8,13 @@ void GateXor::tick()
 		res ^= input[ i ]->getValue(delay);
 	}
 
-	result = res;
+	setResult(res);
+}
+
+GateXor::GateXor(FILE* outFile)
+{
+	output = NULL;
+	this->outFile = outFile;
+	result = 0;
+	delay = DELAY_XOR;
 }

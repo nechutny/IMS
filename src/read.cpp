@@ -24,37 +24,37 @@ gateType hashGate(char* type)
 	{
 		return AND;
 	}
-	
+
 	if(strcmp(type, "OR") == 0)
 	{
 		return OR;
 	}
-	
+
 	if(strcmp(type, "NAND") == 0)
 	{
 		return NAND;
 	}
-	
+
 	if(strcmp(type, "NOR") == 0)
 	{
 		return NAND;
 	}
-	
+
 	if(strcmp(type, "XOR") == 0)
 	{
 		return XOR;
 	}
-	
+
 	if(strcmp(type, "NOT") == 0)
 	{
 		return NOT;
 	}
-	
+
 	if(strcmp(type, "INPUT") == 0)
 	{
 		return INPUT;
 	}
-	
+
 	throw 2;
 }
 
@@ -62,68 +62,68 @@ void readHeader(FILE* fd)
 {
 	char* header=(char*)malloc(100);
 	int a,i;
-	
+
 	if(fscanf(fd, "\"%[^\"]\"", header) != 1)
 	{
 		throw 2;
 	}
-	
+
 	if(strcmp(header, "ExpressPCB Netlist"))
 	{
 		throw 2;
 	}
-	
+
 	if(fscanf(fd, "\n\"%[^\"]\"", header) != 1)
 	{
 		throw 2;
 	}
-	
+
 	if(fscanf(fd, "\n%d", &a) != 1)
 	{
 		throw 2;
 	}
-	
+
 	if(a != 1)
 	{
 		throw 2;
 	}
-	
+
 	if(fscanf(fd, "\n%d", &a) != 1)
 	{
 		throw 2;
 	}
-	
+
 	if(fscanf(fd, "\n%d\n", &a) != 1)
 	{
 		throw 2;
 	}
-	
+
 	if(a != 0)
 	{
 		throw 3;
 	}
-	
+
 	for(i = 0; i < 3; i++)
 	{
 		if(fgets(header,10, fd) == NULL)
 		{
 			throw 2;
 		}
-		
+
 		if(strcmp(header, "\"\"\n"))
 		{
 			throw 2;
 		}
 	}
-	
+
 	free(header);
-	
+
 }
 
-std::vector<Gate*> readParts(FILE* fd)
+std::vector<Gate*> readParts(FILE* fd, FILE* output)
 {
 	std::vector<Gate*> result;
-	
+
 	char* header=(char*)malloc(100);
 	char* identificator=(char*)malloc(100);
 	char* label=(char*)malloc(100);
@@ -131,69 +131,71 @@ std::vector<Gate*> readParts(FILE* fd)
 	Gate *gateTmp;
 	std::vector<Gate*>::iterator it = result.end();
 
-	
+
 	if(fscanf(fd, "\n\"%[^\"]\"", header) != 1)
 	{
 		throw 2;
 	}
-	
+
 	if(strcmp(header, "Part IDs Table"))
 	{
 		throw 2;
 	}
-	
+
 	while(1)
 	{
 		if(fgetc(fd) == EOF)
 		{
 			throw 2;
 		}
-		
+
 		pom = fgetc(fd);
-		
+
 		if(pom == '\n')
 		{
 			break;
 		}
-		
+
 		if( fscanf(fd, "%[^\"]\" \"%[^\"]\" \"\"",identificator, label) != 2)
 		{
 			throw 2;
 		}
-		
+
+		fprintf(output, ", %s %s", identificator, label);
+
 		it = result.end();
 		switch(hashGate(label))
 		{
 			case AND:
-				gateTmp = (Gate*)new GateAnd;
+				gateTmp = (Gate*)(new GateAnd(output));
 			break;
 
 			case OR:
-				gateTmp = (Gate*)new GateOr;
+				gateTmp = (Gate*)(new GateOr(output));
 			break;
-				
+
 			case NAND:
-				gateTmp = (Gate*)new GateNand;
+				gateTmp = (Gate*)(new GateNand(output));
 			break;
-				
+
 			case XOR:
-				gateTmp = (Gate*)new GateXor;
+				gateTmp = (Gate*)(new GateXor(output));
 			break;
-				
+
 			case NOT:
-				gateTmp = (Gate*)new GateNot;	
-				
+				gateTmp = (Gate*)(new GateNot(output));
+
 			case INPUT:
-				gateTmp = (Gate*)new GateInput;	
-				
+				gateTmp = (Gate*)(new GateInput(output));
+
 			case NOR:
-				gateTmp = (Gate*)new GateNor;	
-			break;			
+				gateTmp = (Gate*)(new GateNor(output));
+			break;
 		}
 		result.insert(it, gateTmp);
 		//printf("\n%s,   %s\n", identificator, label);
-	}	
-	
+	}
+
 	free(header);
 	free(label);
 	free(identificator);
@@ -204,7 +206,7 @@ std::vector<Gate*> readParts(FILE* fd)
 std::vector<Wire*> readWires(FILE* fd)
 {
 	std::vector<Wire*> result;
-	
+
 	char* header=(char*)malloc(100);
 	char* identificator=(char*)malloc(100);
 	char pom;
@@ -212,41 +214,41 @@ std::vector<Wire*> readWires(FILE* fd)
 
 	std::vector<Wire*>::iterator is = result.end();
 	Wire *wireTmp;
-	
+
 	if(fscanf(fd, "\n\"%[^\"]\"", header) != 1)
 	{
 		throw 2;
 	}
-	
+
 	if(strcmp(header, "Net Names Table"))
 	{
 		throw 2;
 	}
-	
+
 	while(1)
 	{
 		if(fgetc(fd) == EOF)
 		{
 			throw 2;
 		}
-		
+
 		pom = fgetc(fd);
-		
+
 		if(pom == '\n')
 		{
 			break;
 		}
-		
+
 		if( fscanf(fd, "%[^\"]\" %d",identificator, &a) != 2)
 		{
 			throw 2;
 		}
 		//printf("\n%s,   %d\n", identificator, a);
-		
+
 		wireTmp = new Wire;
 		is = result.end();
 		result.insert(is, wireTmp);
-	}	
+	}
 
 	return result;
 }
@@ -259,17 +261,17 @@ void connectThem(FILE* fd, std::vector<Gate*>* parts, std::vector<Wire*>* wires)
 	{
 		throw 2;
 	}
-	
+
 	if(strcmp(header, "Net Connections Table"))
 	{
 		throw 2;
 	}
-	
+
 	while(fscanf(fd,"%d %d %d %d", &wiresL, &partL, &pin, &conectionsL) == 4)
 	{
-		printf("%d %d %d\n", wiresL, partL, pin);
+		//printf("%d %d %d\n", wiresL, partL, pin);
 		((*parts)[partL-1])->connectWire(pin, (*wires)[wiresL-1]);
 	}
-	
+
 	free(header);
 }

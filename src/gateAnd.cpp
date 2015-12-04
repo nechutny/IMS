@@ -1,5 +1,16 @@
 #include "gateAnd.h"
+#include "delays.h"
 #include <stdio.h>
+
+GateAnd::GateAnd(FILE* outFile)
+{
+	output = NULL;
+	this->outFile = outFile;
+	result = 0;
+	delay = DELAY_AND;
+}
+
+
 void GateAnd::tick()
 {
 	char res = 0;
@@ -8,5 +19,6 @@ void GateAnd::tick()
 		res &= input[ i ]->getValue(delay);
 	}
 
-	result = res;
+	setResult(res);
 }
+

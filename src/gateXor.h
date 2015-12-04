@@ -5,8 +5,10 @@
 
 class GateXor : public Gate
 {
-public:
-	virtual void tick() override;
+	public:
+		GateXor(FILE* outFile);
+
+		virtual void tick() override;
 };
 
 #endif

@@ -6,6 +6,8 @@
 class GateInput : public Gate
 {
 	public:
+		GateInput(FILE* outFile);
+
 		virtual void tick() override;
 };
 

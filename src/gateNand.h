@@ -6,6 +6,8 @@
 class GateNand : public Gate
 {
 	public:
+		GateNand(FILE* outFile);
+
 		virtual void tick() override;
 };
 

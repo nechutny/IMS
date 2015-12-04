@@ -5,8 +5,10 @@
 
 class GateNot : public Gate
 {
-public:
-	virtual void tick() override;
+	public:
+		GateNot(FILE* outFile);
+
+		virtual void tick() override;
 };
 
 #endif
