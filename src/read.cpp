@@ -15,6 +15,7 @@
 #include "gateNand.h"
 #include "gateXor.h"
 #include "gateInput.h"
+#include "gateNor.h"
 
 
 gateType hashGate(char* type)
@@ -30,6 +31,11 @@ gateType hashGate(char* type)
 	}
 	
 	if(strcmp(type, "NAND") == 0)
+	{
+		return NAND;
+	}
+	
+	if(strcmp(type, "NOR") == 0)
 	{
 		return NAND;
 	}
@@ -179,6 +185,9 @@ std::vector<Gate*> readParts(FILE* fd)
 				
 			case INPUT:
 				gateTmp = (Gate*)new GateInput;	
+				
+			case NOR:
+				gateTmp = (Gate*)new GateNor;	
 			break;			
 		}
 		result.insert(it, gateTmp);
@@ -258,11 +267,9 @@ void connectThem(FILE* fd, std::vector<Gate*>* parts, std::vector<Wire*>* wires)
 	
 	while(fscanf(fd,"%d %d %d %d", &wiresL, &partL, &pin, &conectionsL) == 4)
 	{
-		printf("%d %d\n", partL, wiresL);
+		printf("%d %d %d\n", wiresL, partL, pin);
 		((*parts)[partL-1])->connectWire(pin, (*wires)[wiresL-1]);
-		//proc to nefunguje?
 	}
 	
 	free(header);
-	//nacis prvni tri cisla, propojit, hotovo :)
 }
