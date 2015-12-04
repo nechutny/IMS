@@ -7,6 +7,7 @@ Wire::Wire()
 
 Wire::~Wire()
 {
+
 }
 
 

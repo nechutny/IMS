@@ -151,12 +151,12 @@
 
 		Pro tvorbu byl zvolen simulátor uzavřeného systému \slideRef{30}, který nezohleďnuje vlivy prostředí. Bylo by velmi složité zadávat vliv prostředí (radiace, elektromagnetické záření apod.), které je naopak i v realném prostředí nežadoucí a eliminováno. Simulace je izomorfního systému \slideRef{27}, jelikož konkrétní prvky v simulaci odpovídají reálným prvkům.
 
-		Model je koncipován deterministický \slideRef{32}, jelikož simuluje logické obvody, které mají deterministické chování a nejsou zde náhodné proměnné \slideRef{75}. Jak již bylo zmíněno v v předchozím odstavci, tak se jedná o uzavřený systém, takže je zanedbáno rušení okolím.
+		Model je koncipován deterministický \slideRef{32}, jelikož simuluje logické obvody, které mají deterministické chování a nejsou zde náhodné proměnné \slideRef{75}. Jak již bylo zmíněno v předchozím odstavci, tak se jedná o uzavřený systém, takže je zanedbáno rušení okolím.
 
 
 	\section{Implementace metody, modelu}
 
-		Pro implementaci byl zvolen kvaziparalelismus \slideRef{121} pro jeho jednoduchost pro implementaci a omezení počtu chyb vzniklých případnou synchronizací paralelních procesů. Paralelismus by byl obtížně implementovatelný, jelikož chování jednoho členu systému závisí na předchozích výstupech ostatních.
+		Pro implementaci byl zvolen kvaziparalelismus \slideRef{121} pro jeho jednoduchost a omezení počtu případných chyb vzniklých synchronizací paralelních procesů. Paralelismus by byl obtížně implementovatelný, jelikož chování jednoho členu systému závisí na předchozích výstupech ostatních.
 
 		Na základě analýzy zadání a chování logických prvků bylo rozhodnuto, že bude využito konceptu objektově orientovaného programování \slideRef{168}, které nabízí jazyk C++. Každé simulované hradlo bude instancí třídy implementující konkrétní chování. Společné chování je implementováno v abstraktní třídě od které jednotlivá hradla dědí. Dalším typem objektu je vodič, který slouží k propojení vstupů a výstupů s hradly. Opět bude \textit{n} instancí v závislosti na vstupním souboru.
 

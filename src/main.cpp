@@ -69,4 +69,18 @@ int main(int argc, char* argv[])
 
 		time++;
 	}
+
+	for(unsigned i = 0; i < gates.size(); i++)
+	{
+		delete (gates[i]);
+	}
+
+	for(unsigned i = 0; i < wires.size(); i++)
+	{
+		delete (wires[i]);
+	}
+
+
+	fclose(output);
+	fclose(fd);
 }

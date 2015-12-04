@@ -193,7 +193,6 @@ std::vector<Gate*> readParts(FILE* fd, FILE* output)
 			break;
 		}
 		result.insert(it, gateTmp);
-		//printf("\n%s,   %s\n", identificator, label);
 	}
 
 	free(header);
@@ -249,6 +248,9 @@ std::vector<Wire*> readWires(FILE* fd)
 		is = result.end();
 		result.insert(is, wireTmp);
 	}
+
+	free(header);
+	free(identificator);
 
 	return result;
 }
