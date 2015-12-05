@@ -113,11 +113,11 @@
 
 			\subsection{AND}
 				\label{and}
-				Násobení. Prvek může mít 1-n vstupů. Výstupem je pak logická 1, jen v případě, že na všech vstupech je logická 1. V opačných případech je výstupem vždy logická 0. V zápisu vstupního netlist sopuboru je zvolena identifikace \code{"AND"}.  Nastavené zpoždění na základě průzkumu je 13ns\cite{andSheet}.
+				Násobení. Prvek může mít 2-n vstupů. Výstupem je pak logická 1, jen v případě, že na všech vstupech je logická 1. V opačných případech je výstupem vždy logická 0. V zápisu vstupního netlist sopuboru je zvolena identifikace \code{"AND"}.  Nastavené zpoždění na základě průzkumu je 13ns\cite{andSheet}.
 
 			\subsection{OR}
 				\label{or}
-				Sčítání. Prvek může mít 1-n vstupů. Výstupem je pak logická 1 pokuď alespoň jeden vstup nabývá hodnoty logická 1. V opačných případech je výstupem logická 0. V zápisu vstupního netlist sopuboru je zvolena identifikace \code{"OR"}.  Nastavené zpoždění na základě průzkumu je 11ns\cite{orSheet}.
+				Sčítání. Prvek může mít 2-n vstupů. Výstupem je pak logická 1 pokuď alespoň jeden vstup nabývá hodnoty logická 1. V opačných případech je výstupem logická 0. V zápisu vstupního netlist sopuboru je zvolena identifikace \code{"OR"}.  Nastavené zpoždění na základě průzkumu je 11ns\cite{orSheet}.
 
 			\subsection{XOR}
 				Exkluzivita. Prvek má právě 2 vstupy. Výstupem je pak logická 1 pokuď na jednom vstupu je opačná hodnota druhého. V opačných případech je výstupem logická 0. V zápisu vstupního netlist sopuboru je zvolena identifikace \code{"XOR"}.  Nastavené zpoždění na základě průzkumu je 7ns\cite{xorSheet}.
@@ -142,7 +142,7 @@
 			V případě hradel \code{AND}, \code{OR}, \code{XOR} pak bude výstup opačný, ale obdobný. Tedy v případě připojení dvou vstupů s logickou 1 v čase \code{T=0} bude výstupem logická 0 a tato hodnota se změní až po uplynutí zpoždění simulovaného hradla.
 
 		\subsection{Původ postupů}
-			Postupy byly získány z opory k předmětu Modelování a simulace \cite{imsSlide}, přednášek a democvičení. Následně jsme náš návrh konzultovali s 2 studenty magisterského oboru FIT VUT, kteří absolvovali předmět Modelování a simulace v akademickém roce 2014/2015 - Bc. Jiří Semmler a Bc. Jiří Kulda. Konkrétně se jednalo o zjištění, zda si nejsou vědomi skrytých překážek, které může námi zvolené řešení skrývat. Po vysvětlení naše návrhu, bylo sděleno, že by se žádné komplikace při implementaci tohoto řešení neměli objevit.
+			Postupy byly získány z opory k předmětu Modelování a simulace \cite{imsSlide}, přednášek a democvičení. Následně jsme náš návrh konzultovali s 2 studenty magisterského oboru FIT VUT, kteří absolvovali předmět Modelování a simulace v akademickém roce 2014/2015 - Bc. Jiří Semmler a Bc. Jiří Kulda. Konkrétně se jednalo o zjištění, zda si nejsou vědomi skrytých překážek, které může námi zvolené řešení skrývat. Po vysvětlení našeho návrhu, bylo sděleno, že by se žádné komplikace při implementaci tohoto řešení neměly objevit.
 
 			Na základě návrhu a informací v prezentaci \slideRef{276} byla zvolena implementace diskrétního modelu.
 
@@ -165,7 +165,7 @@
 		\subsection{Načtení vstupního souboru}
 			Vstupní soubor ve formátu netlistu (formát rozepsán v kapitole \ref{netlist}) je načítán po řádcích. Prvotně je sestaveno pole obsahující instance objektů reprezentující hradla. Jedná se o instance tříd \code{gateAnd}, \code{gateOr}, \code{gateNot} apod. Každá instance této třídy odpovíd jednomu hradlu ve vstupním souboru.
 
-			Druhým krokem je vytvoření pole obsahující instance třídy \code{wire}, která slouží pro propojení vstupů a výstupů logických členů. Tato třída umožňuje připojit výstupy hradel, z kterých načítý výstupní hodnoty v čase T a přenášet správnou hdonotu na vstupy.
+			Druhým krokem je vytvoření pole obsahující instance třídy \code{wire}, která slouží pro propojení vstupů a výstupů logických členů. Tato třída umožňuje připojit výstupy hradel, z kterých načítá výstupní hodnoty v čase \code{T}, a přenášet správnou hdonotu na vstupy.
 
 			Třetím krokem načítání souboru je právě propojení instancí hradel s instancemi vodičů. V paměti tak vznikne orientovaný graf reprezentující strukturu simulovaného modelu. Během připojování je na vodič propagováno zpoždění hradel, které z vodiče načítají vstup, a uchovávána nejvyšší hodnota. Tato hodnota slouží pro alokaci kruhového bufferu hodnot, kterým je řešeno zpoždění prvků.
 

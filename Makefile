@@ -13,7 +13,17 @@ build/%.cpp.o: src/%.cpp
 
 # Clean compiled files
 clean:
-	rm -rf build/* ims tests/*.out.run doc/documentation.pdf
+	rm -rf build/* ims doc/documentation.pdf
+
+run: ims
+	./ims input1.net 200
+	mv output.csv output-1.csv
+	./ims input2.net 200
+	mv output.csv output-2.csv
+	./ims input3.net 200
+	mv output.csv output-3.csv
+	./ims input4.net 200
+	mv output.csv output-4.csv
 
 
 
