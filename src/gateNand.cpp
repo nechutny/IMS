@@ -2,7 +2,7 @@
 #include <stdio.h>
 void GateNand::tick()
 {
-	char res = 0;
+	char res = 1;
 	for (unsigned i = 0; i < input.size(); i++)
 	{
 		res &= input[ i ]->getValue(delay);

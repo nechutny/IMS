@@ -6,7 +6,7 @@
 
 Buffer::Buffer()
 {
-	size = 100;
+	size = 1;
 	offset = 0;
 
 	data = (char*)calloc(100, sizeof(char));
@@ -19,7 +19,9 @@ Buffer::~Buffer()
 
 char Buffer::getValue(int delay)
 {
-	return data[ (offset - delay) % size ];
+	unsigned int off = ((size+offset-delay)%size);
+	//printf("Position: %d, Delay: %d, Size: %d --> %d \n", offset, delay, size, off);
+	return data[ off ];
 }
 
 void Buffer::setValue(char val)

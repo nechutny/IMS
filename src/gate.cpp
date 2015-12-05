@@ -44,12 +44,12 @@ void Gate::connectWire(unsigned int pin, Wire* in)
 	if(pin == 0)
 	{
 		output = in;
-		in->notifyDelay(delay);
 		in->addOutput(this);
 	}
 	else
 	{
 		std::vector<Wire*>::iterator it = input.end();
+		in->notifyDelay(delay);
 		input.insert(it, in);
 		in->addInput(this);
 	}

@@ -34,7 +34,7 @@ class Gate
 	public:
 		Gate();
 
-		~Gate();
+		virtual ~Gate();
 
 		/**
 		 * Read from inputs and do calculation of result - saved into result

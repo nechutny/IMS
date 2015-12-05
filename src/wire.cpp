@@ -32,6 +32,8 @@ char Wire::getValue(int delay)
 
 void Wire::notifyDelay(unsigned long delay)
 {
+	delay++;
+
 	if(maxDelay < delay)
 	{
 		maxDelay = delay;
