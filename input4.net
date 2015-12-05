@@ -1,0 +1,22 @@
+"ExpressPCB Netlist"
+"SwCAD III version 2.03r"
+1
+0
+0
+""
+""
+""
+
+"Part IDs Table"
+"G1" "INPUT" ""
+"G2" "NAND" ""
+
+"Net Names Table"
+"N01" 1
+"N02" 2
+
+"Net Connections Table"
+1 1 0 1
+1 2 1 1
+2 2 0 1
+2 2 2 1
